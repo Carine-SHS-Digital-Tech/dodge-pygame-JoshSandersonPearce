@@ -29,13 +29,13 @@ class FallingObject(pygame.sprite.Sprite):
 class Character(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface([50,68])
+        self.image = pygame.Surface([29,20])
         self.image.set_colorkey(black)
 
         self.rect = self.image.get_rect()
         self.rect.x = 310
         self.rect.y = 420
-        self.image.blit(pygame.image.load("sandwhich.png"), (0,0))
+        self.image.blit(pygame.image.load("sandwhichnew.png"), (0,0))
     def moveCharacter(self, movement):
         if self.rect.x >= 5 and self.rect.x <= 645:
             self.rect.x = self.rect.x + movement
@@ -48,16 +48,16 @@ pygame.init()                               # Pygame is initialised (starts runn
 
 
 screen = pygame.display.set_mode([700,500]) # Set the width and height of the screen [width,height]
-pygame.display.set_caption("Dodge")       # Name your window
-background_image = pygame.image.load('OrchardBackground.jpg').convert()
+pygame.display.set_caption("oh no mayonaid")       # Name your window
+background_image = pygame.image.load('white-magnetic.jpg').convert()
 done = False                                # Loop until the user clicks the close button.
 clock = pygame.time.Clock()                 # Used to manage how fast the screen updates
 black    = (   0,   0,   0)                 # Define some colors using rgb values.  These can be
-white    = ( 255, 255, 255)                 # used throughout the game instead of using rgb values.
-font = pygame.font.Font(None, 36)
+white    = ( 255, 255, 255)          # used throughout the game instead of using rgb values.
+font = pygame.font.Font(None, 39)
 # Define additional Functions and Procedures here
 allFallingObjects = pygame.sprite.Group()
-nextApple = pygame.time.get_ticks() + 2500
+nextApple = pygame.time.get_ticks() + 2000
 
 charactersGroup = pygame.sprite.Group()
 character = Character()
@@ -85,8 +85,9 @@ while done == False:
     # Update sprites here
     if pygame.time.get_ticks() > nextApple:
         nextObject = FallingObject()
-        nextObject.setImage("mayoinaid.png")
-        nextApple = pygame.time.get_ticks() + 1000
+        nextObject.setImage("mayonaid23smol.jpg")
+        nextApple = pygame.time.get_ticks() + 100
+
         allFallingObjects.add(nextObject)
 
     for eachObject in (allFallingObjects.sprites()):
@@ -110,7 +111,7 @@ while done == False:
     screen.blit(background_image, [0,0])
     allFallingObjects.draw(screen)
     charactersGroup.draw(screen)
-    textImg = font.render(str(score),1,white)
+    textImg = font.render(str(score),1,black)
     screen.blit( textImg, (10,10))
     pygame.display.flip()                   # Go ahead and update the screen with what we've drawn.
     clock.tick(40)                          # Limit to 20 frames per second
