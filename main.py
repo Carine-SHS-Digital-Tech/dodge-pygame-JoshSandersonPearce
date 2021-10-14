@@ -86,12 +86,12 @@ while done == False:
     if pygame.time.get_ticks() > nextApple:
         nextObject = FallingObject()
         nextObject.setImage("mayonaid23smol.jpg")
-        nextApple = pygame.time.get_ticks() + 100
+        nextApple = pygame.time.get_ticks() + 125
 
         allFallingObjects.add(nextObject)
 
     for eachObject in (allFallingObjects.sprites()):
-        eachObject.moveFallingObjects(3)
+        eachObject.moveFallingObjects(5)
 
         score = eachObject.deleteFallingObjects(score)
 
